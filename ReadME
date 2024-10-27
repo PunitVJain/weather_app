@@ -2,7 +2,7 @@ This app is to get the temprature of the given city.
 There are some steps to follow to run this app:
 
 1. Clone the repo.
-2. install the requirements.
+2. install the requirements. (wait...)
 3. create the .env file outside of the app directory.
 4. sign up for the "https://www.weatherapi.com".
 5. get URL & API_key from the site.
