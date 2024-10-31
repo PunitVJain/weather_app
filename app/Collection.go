@@ -3,6 +3,8 @@ package Collection
 import (
 	"log"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func GetData() {
