@@ -14,11 +14,11 @@ class App(object):
         self._request_api: RequestApi = RequestApi()
     
     def get_temp_of_city(self, city: str) -> Dict[str, Any]:
-        temp_data = self._request_api.get_temp_data(city=city)
+        temp_data: Dict[str, Any] = self._request_api.get_temp_data(city=city)
         return temp_data
     
     def process_data(self, city: str) -> WeatherData:
-        weather_data = WeatherData.from_dict(data=self.get_temp_of_city(city=city))
+        weather_data: WeatherData = WeatherData.from_dict(data=self.get_temp_of_city(city=city))
         return weather_data
     
     def weather_of_city(self, city: str) -> str:
