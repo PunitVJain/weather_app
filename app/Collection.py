@@ -20,7 +20,7 @@ class RequestApi(object):
                 self._logging.info(f"Api is working with {data.status_code}")
                 return data.json()
             else:
-                self._logging.error(f"The weather api is not working {data.status_code}")
+                self._logging.error(f"The weather api is not working, may be invalid input {data.status_code}")
                 return None
         except Exception as error:
             self._logging.exception(f"Exception raised {error}")

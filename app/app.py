@@ -14,16 +14,37 @@ class App(object):
         self._request_api: RequestApi = RequestApi()
     
     def get_temp_of_city(self, city: str) -> Dict[str, Any]:
-        temp_data: Dict[str, Any] = self._request_api.get_temp_data(city=city)
-        return temp_data
+        try:
+            temp_data: Dict[str, Any] = self._request_api.get_temp_data(city=city)
+            return temp_data
+        except Exception as error:
+            self._logging.exception(f"May be invalid input data.{error}")
+            return None
     
     def process_data(self, city: str) -> WeatherData:
-        weather_data: WeatherData = WeatherData.from_dict(data=self.get_temp_of_city(city=city))
-        return weather_data
-    
+        try:
+            data: WeatherData = self.get_temp_of_city(city=city)
+            if data:
+                weather_data: WeatherData = WeatherData.from_dict(data=self.get_temp_of_city(city=city))
+                return weather_data
+            else:
+                return None
+        except Exception as error:
+            self._logging.exception(f"There is problem processing the data. {error}")
+            return None
+
     def weather_of_city(self, city: str) -> str:
-        weather_data: WeatherData = self.process_data(city=city)
-        return f"The temp of {weather_data.location.name} is {weather_data.current.temp_c}C. It seems {weather_data.current.cloud}% cloudy day."
+        try:
+            data = self.process_data(city=city)
+            if data:
+                weather_data: WeatherData = self.process_data(city=city)
+                return f"The temp of {weather_data.location.name} is {weather_data.current.temp_c}C. It seems {weather_data.current.cloud}% cloudy day."
+            else:
+                self._logging.warning(f"No data to Process.")
+                return None
+        except Exception as error:
+            self._logging.exception(f"There is problem gathering the data.{error}")
+            return None
     
 if __name__ == "__main__":
     city: str = input("Enter the city to get the weather info: ")
