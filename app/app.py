@@ -17,8 +17,8 @@ class App(object):
         try:
             temp_data: Dict[str, Any] = self._request_api.get_temp_data(city=city)
             return temp_data
-        except Exception as error:
-            self._logging.exception(f"May be invalid input data.{error}")
+        except (Exception, TimeoutError) as error:
+            self._logging.exception(f"May be invalid input data or an api issue. {error}")
             return None
     
     def process_data(self, city: str) -> WeatherData:

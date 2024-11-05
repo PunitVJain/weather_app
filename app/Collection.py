@@ -22,6 +22,6 @@ class RequestApi(object):
             else:
                 self._logging.error(f"The weather api is not working, may be invalid input {data.status_code}")
                 return None
-        except Exception as error:
+        except (Exception, TimeoutError) as error:
             self._logging.exception(f"Exception raised {error}")
             return None
