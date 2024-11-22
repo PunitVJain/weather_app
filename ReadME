@@ -6,7 +6,7 @@ There are some steps to follow to run this app:
 3. create the .env file outside of the app directory.
 4. sign up for the "https://www.weatherapi.com".
 5. get URL & API_key from the site.
-6. The URL is have used is "http://api.weatherapi.com/v1/current.json" (please use the same)
+6. The URL used is "http://api.weatherapi.com/v1/current.json" (please use the same)
 7. create the API_key & define these in .evn file.
 8. Then create the venv & install the requirements.
 9. At the end run the app.py file with python app.py.
